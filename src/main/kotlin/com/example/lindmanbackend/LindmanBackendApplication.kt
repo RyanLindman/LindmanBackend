@@ -7,5 +7,6 @@ import org.springframework.boot.runApplication
 class LindmanBackendApplication
 
 fun main(args: Array<String>) {
+
     runApplication<LindmanBackendApplication>(*args)
 }
