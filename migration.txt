@@ -1,0 +1,26 @@
+import { useRouteError } from "react-router-dom";
+
+interface ErrorView {
+  message: string;
+  statusText: string;
+}
+
+export default function ErrorView() {
+  const error = useRouteError() as ErrorView;
+  console.error(error);
+
+  return (
+    <div id="error-view">
+      <h1>hmm..</h1>
+      <p>error occured: .</p>
+      <p style={{fontSize: 32}}>
+        {error.statusText || error.message } 
+        .
+      </p>
+    </div>
+  );
+}
+
+-----------------
+
+
