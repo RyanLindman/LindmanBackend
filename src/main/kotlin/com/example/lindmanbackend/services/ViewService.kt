@@ -20,7 +20,6 @@ class ViewService(private val viewRepo: ViewRepo) {
     }
 
     fun updateView(view: View): View {
-
         if (viewRepo.existsById(view.getId())) {
             return viewRepo.save(view)
         } else {

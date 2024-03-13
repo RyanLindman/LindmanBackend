@@ -9,7 +9,6 @@ import java.util.*
 interface UserRepo : JpaRepository<User, Long> {
     fun findByEmail(email: String): User?
     fun findByUsername(username: String): User?
-
     override fun findById(id: Long): Optional<User>
 }
 

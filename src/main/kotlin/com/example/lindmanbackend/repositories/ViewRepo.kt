@@ -6,9 +6,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ViewRepo : JpaRepository<View, Long> {
-
-
-
 }
 
 

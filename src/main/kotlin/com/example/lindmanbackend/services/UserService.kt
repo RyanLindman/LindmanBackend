@@ -20,18 +20,13 @@ class UserService @Autowired constructor(
     fun getUserById(id: Long): User? {
         val user: Optional<User> = userRepo.findById(id)
         return user.orElseThrow { NoSuchElementException("User not found with ID: $id") }
-
-
     }
 
     fun createUser(userDto: UserDto): User {
 
         validatePassword(userDto.password, userDto.confirmPassword)
-
         val hashedPassword = passwordEncoder.encode(userDto.password)
         val user = User(email = userDto.email, username = userDto.username, password = hashedPassword, confirmPassword = userDto.confirmPassword)
-
-
 
         return userRepo.save(user)
     }
