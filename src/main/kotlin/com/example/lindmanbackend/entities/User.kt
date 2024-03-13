@@ -11,20 +11,19 @@ class User(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long,
+    val id: Long? = null,
 
-    @Column(length = 30, nullable = false)
-    private var username: String,
+    @Column(length = 30, nullable = false, unique = true)
+    val username: String,
 
     @Column(nullable = false, unique = true)
-    private var email: String,
+    val email: String,
 
     @Column(nullable = false)
-    private var password: String,
+    val password: String,
+
+    @Transient
+    val confirmPassword: String,
 
     ) {
-
-    fun getId(): Long {
-        return id
-    }
 }
