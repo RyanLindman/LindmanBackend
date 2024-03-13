@@ -11,7 +11,7 @@ class User(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    private val id: Long,
 
     @Column(length = 30, nullable = false)
     private var username: String,
@@ -22,6 +22,9 @@ class User(
     @Column(nullable = false)
     private var password: String,
 
-
     ) {
+
+    fun getId(): Long {
+        return id
+    }
 }
