@@ -21,10 +21,10 @@ class ViewService(private val viewRepo: ViewRepo) {
 
     fun updateView(view: View): View {
 
-        if (viewRepo.existsById(view.id)) {
+        if (viewRepo.existsById(view.getId())) {
             return viewRepo.save(view)
         } else {
-            throw IllegalArgumentException("View with ID: ${view.id} does not exist")
+            throw IllegalArgumentException("View with ID: ${view.getId()} does not exist")
         }
     }
 

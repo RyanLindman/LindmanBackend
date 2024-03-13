@@ -16,5 +16,4 @@ class ViewController(private val viewService: ViewService) {
         return viewService.getAllViews()
     }
 
-
 }
