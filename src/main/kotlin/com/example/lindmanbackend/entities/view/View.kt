@@ -1,30 +1,31 @@
-package com.example.lindmanbackend.entities
+package com.example.lindmanbackend.entities.view
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import com.example.lindmanbackend.entities.user.User
+import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDateTime
 
 @Entity
 class View(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long,
+    private val id: Long = 0,
 
     @Column(length = 30)
-    private var name: String,
+    var name: String,
     @Column(length = 30, nullable = false)
-    private var title: String,
+    var title: String,
 
+    var content: String? = null,
 
     @CreationTimestamp
-    @Column(nullable = false)
-    val createdAt: LocalDateTime = LocalDateTime.now(),
+    @Column(nullable = false, updatable = false)
+    val createdAt: LocalDateTime? = null,
 
-    var updatedAt: LocalDateTime = LocalDateTime.now(),
+    @UpdateTimestamp
+    @Column(nullable = false)
+    var updatedAt: LocalDateTime? = null,
 
     ) {
     fun getId(): Long {

@@ -1,9 +1,8 @@
 package com.example.lindmanbackend.services
 
-import com.example.lindmanbackend.entities.User
-import com.example.lindmanbackend.entities.dto.UserDto
+import com.example.lindmanbackend.entities.user.User
+import com.example.lindmanbackend.entities.user.UserDto
 import com.example.lindmanbackend.repositories.UserRepo
-import lombok.extern.java.Log
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
