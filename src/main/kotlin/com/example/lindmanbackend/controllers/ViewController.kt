@@ -17,27 +17,20 @@ import org.springframework.web.bind.annotation.ResponseBody
 @RequestMapping("/api/v1/views")
 class ViewController(private val viewService: ViewService) {
 
-    @GetMapping("/all")
-    @ResponseBody
-
+    @GetMapping("")
     fun getAllViews(): List<View> {
         return viewService.getAllViews()
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     fun createView(@RequestBody request: ViewDto): ResponseEntity<ResponseFormat> {
-        val view = viewService.createView(
-            title = request.title,
-            name = request.name
-        )
-
+        val view: View = viewService.createView(request)
         val response = ResponseFormat(
             id = view.getId(),
             name = view.name,
             title = view.title,
             content = view.content ?: "",
         )
-
         return ResponseEntity.ok(response)
     }
 }

@@ -5,5 +5,4 @@ data class ResponseFormat(
     val name: String,
     val title: String,
     val content: String,
-
 )

@@ -6,9 +6,9 @@ import com.example.lindmanbackend.entities.view.dto.ResponseFormat
 import com.example.lindmanbackend.entities.view.dto.ViewDto
 import com.example.lindmanbackend.repositories.UserRepo
 import com.example.lindmanbackend.repositories.ViewRepo
+import jakarta.persistence.EntityNotFoundException
 import org.springframework.stereotype.Service
-import java.lang.IllegalArgumentException
-import kotlin.IllegalArgumentException
+
 
 @Service
 class ViewService(
@@ -27,8 +27,6 @@ class ViewService(
     fun getViewResponse(viewId: Long): ResponseFormat {
         val view = viewRepo.findById(viewId)
             .orElseThrow { NoSuchElementException("View not found with id: $viewId") }
-
-        // Constructing the ResponseFormat
         return ResponseFormat(
             id = view.getId(),
             name = view.name,
@@ -37,35 +35,23 @@ class ViewService(
         )
     }
 
-    fun convertDtoToEntity(viewDto: ViewDto): View {
-        return View(
-            name = viewDto.name.toString(),
-            title = viewDto.title.toString(),
-            content = viewDto.content
-        )
-    }
-
-    fun convertEntityToDto(view: View): ViewDto {
-        return ViewDto(
-            name = view.name,
-            title = view.title,
-            content = view.content
-        )
-    }
-
     fun createView(viewDto: ViewDto): View {
         val view = View(
-            name = viewDto.name.toString(),
-            title = viewDto.title.toString(),
-            content = viewDto.content
+            name = viewDto.name ?: "",
+            title = viewDto.title ?: "",
+            content = viewDto.content,
         )
         return viewRepo.save(view)
     }
 
+    fun updateView(id: Long, viewDto: ViewDto): View {
+        val view = viewRepo.findById(id).orElseThrow {
+            EntityNotFoundException("View with ID: $id not found")
+        }
+        view.name = viewDto.name ?: view.name
+        view.title = viewDto.title ?: view.title
+        view.content = viewDto.content ?: view.title
 
-    fun updateView(id: Long): View {
-
-        return viewRepo.save(existingView)
     }
 
     fun deleteViewById(id: Long) {
